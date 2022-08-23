@@ -1,12 +1,13 @@
 import csv
 data = csv.reader(open('estado_resultados.csv'),delimiter=';')
-balances = []
 ebit = []
 
 
 for fila in data:
-	balances.append(fila)
+	if fila[0]=="AAPL" and fila[1]=="trimestral":
+		ebit.append(fila[10])
 
-for i in balances:
-	if balances[fila][0]=="AAPL":
-		AAPL.append(fila)
+for i in range(4):
+	print(int(ebit[i])/1000000)
+
+
