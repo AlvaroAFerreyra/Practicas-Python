@@ -11,8 +11,11 @@ for fila in data:
 for busqueda in data:
 	if busqueda[0] in empresas and busqueda[1]=="anual" and search[busqueda[0]]==False:
 		try:
-			print(f"El ratio de {busqueda[0]} es {int(busqueda[20])/int(busqueda[7])}")
-			search[busqueda[0]]==True
+			ratio = int(busqueda[20])/int(busqueda[7])
+			search[busqueda[0]] = ratio
+			print(search[busqueda[0]])
 		except:
 			print("No se pudo calcular")	
+	else:
+		continue
 
