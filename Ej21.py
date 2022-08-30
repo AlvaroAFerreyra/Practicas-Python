@@ -11,14 +11,13 @@ for fila in data:
 balances.pop(0)
 
 for i in balances:
-	if i[1] == "anual" and comp[i[0]]==False:
-		try:
-			RD = int(i[3]) > 1000000000
+	try:
+		RD = int(i[3]) > 1000000000
+		if i[1] == "anual" and comp[i[0]]==False and RD:
 			count+=1
 			comp[i[0]]=True
-		except:
-			continue	
-
+	except:
+		continue	
 
 
 print(count)	
