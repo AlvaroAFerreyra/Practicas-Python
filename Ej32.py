@@ -7,4 +7,4 @@ baseFilter['max_intraDay'] = (((baseFilter.high/baseFilter.open)*100)-100)
 
 baseOrder = baseFilter.sort_values(by='max_intraDay',ascending=False)
 
-print(baseOrder)
+print(baseOrder.head(5))
