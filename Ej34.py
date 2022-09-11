@@ -8,3 +8,5 @@ data.drop(["open","high","low","close","adjusted_close",'volume'],axis=1,inplace
 baseOrdenada = (data.sort_values(by='max_intraDay', ascending=False)).head(10)
 
 print(baseOrdenada)
+
+baseOrdenada.to_excel('Ej34.xlsx',sheet_name="Ejercicio")
