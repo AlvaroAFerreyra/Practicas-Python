@@ -11,6 +11,4 @@ newTable['movIntraDayPas'] = newTable.movIntraDay.shift(-1)
 
 newTable.set_index('fecha', inplace=True)
 
-
-
 print(newTable)
