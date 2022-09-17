@@ -9,4 +9,3 @@ data['varPorcAdjClose'] = round((data.adjusted_close.pct_change(-5)-1)*100, 2)
 
 print(data.dropna())
 
-
