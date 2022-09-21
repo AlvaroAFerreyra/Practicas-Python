@@ -11,5 +11,5 @@ data['volEnMillones'] = (data.precioMedio*data.volume)/1000000
 
 data['mobileMedia_20'] = data.volEnMillones.rolling(20).mean()
 
-print(data)
+print(data.dropna())
 
