@@ -7,6 +7,8 @@ data['gap'] = (data.open/data.close.shift(-1)-1)*100
 
 data['varPorcAdjClose'] = ((data.adjusted_close.shift(5)/data.adjusted_close)-1)*100
 
-filtro = data[data['gap'] > 1 & data['varPorcAdjClose' > 0]]
+filtro1 = data[data['gap'] > 1]
 
-print(filtro)
+filtro2 = filtro1[filtro1['varPorcAdjClose'] > 0]
+
+print((len(filtro2)/len(data))*100)
