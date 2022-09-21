@@ -11,4 +11,4 @@ filtro1 = data[data['gap'] > 1]
 
 filtro2 = filtro1[filtro1['varPorcAdjClose'] > 0]
 
-print((len(filtro2)/len(data))*100)
+print((len(filtro2)/len(filtro1))*100)
