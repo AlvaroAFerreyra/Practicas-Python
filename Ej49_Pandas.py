@@ -12,4 +12,6 @@ data['mediLenta'] = data.adjusted_close.ewm(span=slow, adjust=False).mean()
 
 data['mediRapida'] = data.adjusted_close.ewm(span=fast, adjust=False).mean()
 
-print(data)
+data['cruce'] = (data.mediRapida/data.mediLenta-1)*100
+
+print(data.round(4))
