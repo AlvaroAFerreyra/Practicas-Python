@@ -13,7 +13,7 @@ since = pd.Timestamp(year,1,1)
 
 until = pd.Timestamp(year,12,31)
 
-newTable = data[(data['timestamp'] >= since) & (data['timestamp'] <= until)]
+newTable = data[(data['timestamp'] >= since) & (data['timestamp'] <= until)].copy()
 		
 newTable['difIntraDay'] = newTable.adjusted_close / newTable.adjusted_close.shift(1)
 
