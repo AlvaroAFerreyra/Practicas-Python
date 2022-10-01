@@ -5,7 +5,7 @@ data = pd.read_excel('AAPL.xlsx')
 
 newTable = pd.DataFrame()
 
-data.set_index('timestamp', inplace=True)
+"""data.set_index('timestamp', inplace=True)"""
 
 data.drop(['open','close','volume','high','low'],axis=1,inplace=True)
 
