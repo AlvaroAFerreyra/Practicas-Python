@@ -19,4 +19,6 @@ newTable['maximo'] = data.high.resample('D').max().to_frame()
 
 newTable['medio'] = data.medio.resample('D').mean().to_frame()
 
+newTable['OP'] = (newTable.maximo - newTable.minimo) / newTable.medio *100
+
 print(newTable.dropna())
