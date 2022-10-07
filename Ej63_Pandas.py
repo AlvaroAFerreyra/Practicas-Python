@@ -3,6 +3,8 @@ import datetime as dt
 
 newTable = pd.DataFrame()
 
+top5 = pd.DataFrame()
+
 data = pd.read_excel("AAPL_INTRA.xlsx")
 
 data.drop(['volume','close'], axis=1, inplace=True)
@@ -21,10 +23,10 @@ newTable['medio'] = data.medio.resample('D').mean().to_frame()
 
 newTable['OP'] = (newTable.maximo - newTable.minimo) / newTable.medio *100
 
-newTable = newTable.sort_values('OP', ascending=False)
+top5 = newTable.sort_values('OP', ascending=False)
 
 
-print(newTable.head(5))
+print(top5.head(5))
 
 print(newTable.loc[newTable.OP > 5].OP.count())
 
