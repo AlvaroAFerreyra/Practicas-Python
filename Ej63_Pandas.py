@@ -21,6 +21,10 @@ newTable['medio'] = data.medio.resample('D').mean().to_frame()
 
 newTable['OP'] = (newTable.maximo - newTable.minimo) / newTable.medio *100
 
+newTable = newTable.sort_values('OP', ascending=False)
+
+
+print(newTable.head(5))
 
 print(newTable.loc[newTable.OP > 5].OP.count())
 
