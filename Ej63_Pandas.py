@@ -21,7 +21,8 @@ newTable['medio'] = data.medio.resample('D').mean().to_frame()
 
 newTable['OP'] = (newTable.maximo - newTable.minimo) / newTable.medio *100
 
-newTable['VF'] = newTable[newTable['OP'] > 5]
+
+print(newTable.loc[newTable.OP > 5].OP.count())
 
 print(newTable.dropna())
 
