@@ -14,4 +14,4 @@ for activo in activos:
 
 tablaFinal = pd.concat(listaVariaciones, axis=1).dropna()
 tablaFinal.columns = activos
-	
+tablaFinal.to_excel("AAPL_SPY_QQQ.xlsx")	
