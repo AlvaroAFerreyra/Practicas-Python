@@ -23,7 +23,7 @@ data["supBollinger"] = data.mediaMov + data.desvio*desvios
 
 data["lowBollinger"] = data.mediaMov - data.desvio*desvios
 
-newTable['fecha'] = data.timestamp
+newTable = pd.DataFrame(index = data.index)
 
 newTable['cierreAjustado'] = data.adjusted_close
 
