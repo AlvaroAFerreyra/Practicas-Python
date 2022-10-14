@@ -23,5 +23,13 @@ data["supBollinger"] = data.mediaMov + data.desvio*desvios
 
 data["lowBollinger"] = data.mediaMov - data.desvio*desvios
 
-print(data.dropna())
+newTable['fecha'] = data.timestamp
+
+newTable['cierreAjustado'] = data.adjusted_close
+
+newTable['supBollinger'] = data.supBollinger
+
+newTable['lowBollinger'] = data.lowBollinger 
+
+print(newTable.dropna())
 
