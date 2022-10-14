@@ -19,9 +19,9 @@ data['desvio'] = data.adjusted_close.rolling(ruedas).std()
 
 data['mediaMov'] = data.adjusted_close.rolling(ruedas).mean()
 
-data["supBand"] = 
+data["supBollinger"] = data.mediaMov + data.desvio*desvios
 
-data["lowBand"] = 
+data["lowBollinger"] = data.mediaMov - data.desvio*desvios
 
-print(data)
+print(data.dropna())
 
