@@ -31,5 +31,7 @@ newTable['supBollinger'] = data.supBollinger
 
 newTable['lowBollinger'] = data.lowBollinger 
 
+newTable.to_excel("tablaBollinger.xlsx")
+
 print(newTable.dropna())
 
