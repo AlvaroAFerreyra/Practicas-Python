@@ -11,13 +11,11 @@ bollinger['superior'] = bollinger.cierreAjustado > bollinger.supBollinger
 
 bollinger['inferior'] = bollinger.cierreAjustado < bollinger.lowBollinger
 
-"""print(bollinger.superior.plot(kind="bar"))"""
-
 newTable = pd.DataFrame(index = bollinger.index)
 
-newTable['superior'] = bollinger.superior.resample("Y").sum()
+newTable['superior'] = bollinger.superior.resample("Y").sum().to_frame()
 
-newTable['inferior'] = bollinger.inferior.resample("Y").sum()
+newTable['inferior'] = bollinger.inferior.resample("Y").sum().to_frame()
 
 print(newTable.superior.dropna().plot(kind='bar'))
 
