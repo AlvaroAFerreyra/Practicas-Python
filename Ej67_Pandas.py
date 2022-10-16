@@ -2,16 +2,14 @@ import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
 
+newTable = pd.DataFrame()
+
 bollinger = pd.read_excel("tablaBollinger.xlsx")
 
-tablaFiltrada = bollinger[(bollinger.cierreAjustado > bollinger.supBollinger) | (bollinger.cierreAjustado < bollinger.lowBollinger)]
+bollinger['precioForward'] = bollinger.cierreAjustado.shift(-5)
 
-tablaFiltrada.set_index('timestamp', inplace=True)
+bollinger['varForward'] = (bollinger.precioForward / bollinger.cierreAjustado -1)*100
 
-conteo = tablaFiltrada.cierreAjustado.groupby(tablaFiltrada.index.year)
+newTable = bollinger.loc[bollinger.cierreAjustado > bollinger.supBollinger]
 
-conteo = conteo.count().to_frame()
-
-fig, ax = plt.subplots()
-ax.bar(conteo.index, conteo.cierreAjustado)
-plt.show()
+print(newTable.varForward.mean())
