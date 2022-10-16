@@ -16,3 +16,4 @@ conteo = conteo.count().to_frame()
 plt.plot(conteo)
 
 plt.show()
+
