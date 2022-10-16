@@ -25,13 +25,13 @@ data["lowBollinger"] = data.mediaMov - data.desvio*desvios
 
 newTable = pd.DataFrame(index = data.index)
 
-newTable['cierreAjustado'] = data.adjusted_close
+newTable['adjusted_close'] = data.adjusted_close
 
 newTable['supBollinger'] = data.supBollinger
 
 newTable['lowBollinger'] = data.lowBollinger 
 
-newTable.to_excel("tablaBollinger.xlsx")
+newTable.dropna().to_excel("tablaBollinger.xlsx")
 
 print(newTable.dropna())
 
