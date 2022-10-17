@@ -2,14 +2,29 @@ import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
 
-listaFiltrada = pd.DataFrame() 
 
 data = pd.read_excel("tablaBollinger.xlsx")
 
-data['precioForward'] = data.adjusted_close.shift(-5)
+data.set_index("timestamp", inplace=True)
 
-data['varForward'] = (data.precioForward / data.adjusted_close -1)*100
+data = data[data.index < "2009-01-01"]
 
+resultados = []
 
+dataFiltrada = data.loc[data.adjusted_close > data.supBollinger]
 
-print(data)
+for i in range(21):
+
+	data['precioForward'] = data.adjusted_close.shift(-i)
+
+	data['varForward'] = (data.precioForward / data.adjusted_close -1)*100
+
+	dataFiltrada = data.loc[data.adjusted_close > data.supBollinger]
+
+	resultados.append(dataFiltrada.varForward.mean())
+
+grafico = pd.DataFrame(resultados)
+
+plt.bar(grafico)
+
+plt.show()
