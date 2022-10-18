@@ -27,9 +27,7 @@ for i in range(21):
 grafico = pd.DataFrame(resultados)
 
 grafico.columns = ['resultados']
-print(grafico)
+
 fig, ax=plt.subplots()
 ax.bar(grafico.index, grafico.resultados)
-
-
 plt.show()
