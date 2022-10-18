@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 data = pd.read_excel("tablaBollinger.xlsx")
@@ -21,10 +22,14 @@ for i in range(21):
 
 	dataFiltrada = data.loc[data.adjusted_close > data.supBollinger]
 
-	resultados.append(dataFiltrada.varForward.mean())
+	resultados.append(dataFiltrada.varForward.mean()/(i+1))
 
 grafico = pd.DataFrame(resultados)
 
-plt.bar(grafico)
+grafico.columns = ['resultados']
+print(grafico)
+fig, ax=plt.subplots()
+ax.bar(grafico.index, grafico.resultados)
+
 
 plt.show()
