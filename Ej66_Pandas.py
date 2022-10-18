@@ -5,15 +5,14 @@ import matplotlib.pyplot as plt
 
 bollinger = pd.read_excel("tablaBollinger.xlsx")
 
-tablaFiltrada = bollinger[(bollinger.cierreAjustado > bollinger.supBollinger) | (bollinger.cierreAjustado < bollinger.lowBollinger)]
+tablaFiltrada = bollinger[(bollinger.adjusted_close > bollinger.supBollinger) | (bollinger.adjusted_close < bollinger.lowBollinger)]
 
 tablaFiltrada.set_index('timestamp', inplace=True)
 
-conteo = tablaFiltrada.cierreAjustado.groupby(tablaFiltrada.index.year)
+conteo = tablaFiltrada.adjusted_close.groupby(tablaFiltrada.index.year)
 
 conteo = conteo.count().to_frame()
 
-plt.plot(conteo)
-
-plt.show()
-
+fig, ax=plt.subplots()
+ax.bar(conteo.index, conteo.adjusted_close)
+plt.show() 
