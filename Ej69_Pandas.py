@@ -19,5 +19,5 @@ newDF.columns = empresas
 
 newDF = newDF.loc[(newDF.index >= '2013-01-01') & (newDF.index <= '2013-12-31')]
 
-print(newDF)	
+newDF.dropna().to_excel("ADRs2013.xlsx")
 
