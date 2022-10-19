@@ -2,17 +2,22 @@ import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
 
-i=0
-a=0
+listaVar = []
 
 empresas = ['BBAR','BMA','CRESY','EDN','GGAL','PAM','TEO','TGS','YPF']
 
 for empresa in empresas:
-	empresas[i] = pd.read_excel(empresa+'.xlsx')
-	i=i+1
+	tabla = pd.read_excel(empresa+'.xlsx')
+	tabla = tabla.sort_values('timestamp', ascending=True)
+	tabla['varDiaria'] = tabla.adjusted_close.pct_change()*100
+	tabla.set_index('timestamp', inplace=True)
+	listaVar.append(tabla['varDiaria'])
 
-for a in range(len(empresas)):
-	empresas[a] = empresas[a][(empresas[a].timestamp > '2012-12-31') & (empresas[a].timestamp < '2014-1-1')]
-	empresas[a]['varDiaria'] = empresas[0].adjusted_close.pct_change(-1)*100
-	print(empresas[a])
-	a=a+1
+newDF = pd.concat(listaVar, axis=1)
+
+newDF.columns = empresas
+
+newDF = newDF.loc[(newDF.index >= '2013-01-01') & (newDF.index <= '2013-12-31')]
+
+print(newDF)	
+
