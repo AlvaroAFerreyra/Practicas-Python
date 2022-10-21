@@ -4,28 +4,13 @@ import matplotlib.pyplot as plt
 
 data = pd.read_excel("ADRs2013.xlsx")
 
-newTable = pd.DataFrame()
-
-rendAcum = []
-volatAnual = []
-
-empresas = ['BBAR','BMA','CRESY','EDN','GGAL','PAM','TEO','TGS','YPF']
-
-
 data.set_index('timestamp', inplace=True)
 
-for empresa in empresas:
-	rendAcum.append(data[empresa].sum())
-	volatAnual.append(data[empresa].std())
+newTable = pd.DataFrame(index = data.columns)
 
-newTable['fecha'] = data.index
+newTable['rendAcum'] = (((data/100+1).prod()-1)*100)
 
-newTable['rendAcum'] = rendAcum
-
-newTable['volatAnual'] = volatAnual
-
-newTable.set_index('fecha', inplace=True)
-
-newTable.columns = empresas
+newTable['volatilidadAnual'] = data.std() * (len(data)**0.5)
 
 print(newTable)
+
