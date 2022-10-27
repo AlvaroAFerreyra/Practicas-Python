@@ -5,4 +5,6 @@ import matplotlib.pyplot as plt
 data = pd.read_excel("ADRsHIST.xlsx")
 data.set_index('timestamp', inplace=True)
 
-print(data)
+pr = data.columns.std()-2.5
+
+print(pr)
