@@ -9,11 +9,4 @@ listavn = []
 data = pd.read_excel("ADRsHIST.xlsx")
 data.set_index('timestamp', inplace=True)
 
-for empresa in empresas:
-
-	vn = data[empresa].quantile(0.999)
-	listavn.append(vn)
-
-fig, ax=plt.subplots()
-ax.bar(empresas, listavn)
-plt.show()
+print(data.corr(method="pearson").round(2))
