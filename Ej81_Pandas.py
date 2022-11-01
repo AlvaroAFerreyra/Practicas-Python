@@ -11,4 +11,4 @@ data['intraMov'] = (data.close/data.open-1)*100
 newTable = data.drop(['open','high','low','close','volume','adjusted_close'], axis=1).dropna()
 newTable.index.name = 'date'
 
-print(newTable)
+newTable.to_excel('AAPL_graf.xlsx')
