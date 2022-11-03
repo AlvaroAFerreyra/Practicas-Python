@@ -5,7 +5,8 @@ data = pd.read_excel('SPY.xlsx')
 data = data.sort_values('timestamp', ascending=True)
 data.set_index('timestamp', inplace=True)
 
-años=[]
+años = []
+precios = {}
 
 desde = input("Ingrese el año desde el que quiere comparar: ")
 hasta = input("Ingrese el año hasta el que quiere comparar: ")
@@ -13,4 +14,10 @@ hasta = input("Ingrese el año hasta el que quiere comparar: ")
 for i in range(int(desde), int(hasta)+1):
 	años.append(i)
 
-print(años)
+for año in años:
+	precios[año] = data.adjusted_close.loc[(data.index >= str(año)) & (data.index < str(año+1))]
+	precios[año] = precios[año].reset_index(drop=True)
+	line = plt.plot(precios[año])
+
+plt.show()	
+
