@@ -16,6 +16,7 @@ for año in años:
 	precios[año] = precios[año].reset_index(drop=True)
 	line = plt.plot(precios[año])
 
+plt.legend(años, loc="lower right")
 plt.show()
 
 
