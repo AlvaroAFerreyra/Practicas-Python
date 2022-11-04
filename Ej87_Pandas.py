@@ -22,6 +22,7 @@ for fila in range(len(years)):
 		serie = precios[year].loc[0:numRuedas]
 		ax[fila][columna].plot(serie)
 		ax[fila][columna].legend([year], loc='lower right')
+		ax[fila][columna].set_xticks([])
 
 plt.show()		
 
