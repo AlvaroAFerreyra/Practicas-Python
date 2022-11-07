@@ -12,6 +12,8 @@ fig, ax = plt.subplots(nrows=len(años), ncols=len(años[0]), figsize=(10,5))
 
 for fila in range(len(años)):
 	for columna in range(len(años[0])):
+		precios[años[fila][columna]] = data.adjusted_close.loc[(data.index >= años[fila][columna]) & (data.index < años[fila][columna]+1]
+		precios[años[fila][columna]].reset_index(drop=True)
 		ax[fila][columna] = data.adjusted_close.loc([data.index == años[fila][columna]])
 		ax[fila][columna].plot(serie)
 		ax[fila][columna].legend([year], loc='lower right')
