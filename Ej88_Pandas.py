@@ -12,7 +12,7 @@ años = ['2014','2015','2016','2017','2018','2019']
 fig, ax = plt.subplots(figsize=(10,5))
 
 for año in años:
-	variaciones[año] = data.loc[(data.index >= año) & (data.index < str(int(año)+1))]
+	variaciones[año] = data.loc[(data.index >= año) & (data.index < str(int(año)+1))].copy()
 	variaciones[año]['pct_ch'] = variaciones[año]['adjusted_close'].pct_change()+1
 	variaciones[año]['rendimiento'] = variaciones[año]['pct_ch'].cumprod()*100
 	variaciones[año].dropna(inplace=True)
