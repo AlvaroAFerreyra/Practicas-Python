@@ -18,7 +18,7 @@ for año in años:
 	variaciones[año].dropna(inplace=True)
 	variaciones[año] = variaciones[año].reset_index(drop=True)
 	ax.plot(variaciones[año]['rendimiento'])
-	ax.legend(años, loc='lower right')
+	ax.legend(años, loc='upper left')
 
 
 plt.show()
