@@ -12,5 +12,5 @@ data['mm200'] = data.adjusted_close.rolling(200).mean()
 fig, ax = plt.subplots(figsize=(10,5))
 ax.plot(data.mm50)
 ax.plot(data.mm200)
-
+ax.set_yscale('log')
 plt.show()
