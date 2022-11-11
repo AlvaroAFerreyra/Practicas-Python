@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 data = pd.read_excel('AAPL.xlsx')
 data = data.sort_values('timestamp', ascending=True)
 data.set_index('timestamp', inplace=True)
+data.drop(['high','low','volume','close'], axis=1, inplace=True)
 
 serie = {}
-años = ['2014','2015','2016','2017','2018','2019']
+años = ['2015','2016','2017','2018','2019']
 fig, ax = plt.subplots(figsize=(10,5))
 
 for año in años:
