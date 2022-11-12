@@ -14,6 +14,8 @@ volatilidad = data.adjusted_close.groupby(data.index.year).std()/250**0.5
 fig, ax = plt.subplots(ncols=2, figsize=(10,5))
 ax[0].plot(maxIntra)
 ax[0].plot(minIntra)
+ax[0].legend(['maxIntra','minIntra'], loc='upper left')
 ax[1].plot(volatilidad)
+ax[1].legend(['volatilidad'], loc='upper right')
 
 plt.show()
