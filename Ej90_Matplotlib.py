@@ -20,6 +20,4 @@ ax.plot(gapsAnualizados)
 ax.plot(intraAnualizado)
 ax.legend(['Gaps','Intradiarios'], loc="lower right")
 
-
-
 plt.show()
