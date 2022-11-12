@@ -15,9 +15,10 @@ for año in años:
 	serie[año] = data.loc[(data.index >= año) & (data.index < str(int(año)+1))].dropna().copy()
 	serie[año]['gap'] = (serie[año]['open'] / serie[año]['adjusted_close'].shift()-1)*100
 	serie[año]['intra'] = (serie[año]['adjusted_close'] / serie[año]['open']-1)*100
-	print(serie[año])
-	ax.plot(serie[año]['gap'])
-	ax.plot(serie[año]['intra'])
+	print(serie[año]['gap'].resample('Y').mean().to_frame())
+	print(serie[año]['intra'].resample('Y').mean().to_frame())
+	ax.plot(serie[año]['gap'].resample('Y').mean().to_frame())
+	ax.plot(serie[año]['intra'].resample('Y').mean().to_frame())
 	ax.legend(años, loc="upper left")
 
 
