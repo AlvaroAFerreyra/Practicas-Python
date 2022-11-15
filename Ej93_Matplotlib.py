@@ -16,4 +16,15 @@ data['bollingerInf'] = data.sma20 - 2.5 * data.varstd_c
 data = data.dropna()
 data = data.loc[data.index >= '2019']
 
-print(data)
+fig, ax0 = plt.subplots(figsize=(10,5))
+
+plt.gca().set_yscale('log')
+plt.plot(data.sma20)
+plt.fill_between(data.index, data.bollingerInf, data.bollingerSup, alpha=0.2)
+
+ax1= plt.gca().twinx()
+ax1.set_ylabel('volatilidad')
+ax1.plot(data.volatilidad, ls='--')
+
+plt.show() 
+
