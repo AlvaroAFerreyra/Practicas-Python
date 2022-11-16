@@ -21,5 +21,4 @@ dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
 
 mpf.plot(dataAj, type='candle', figratio=(14,5), volume=True, style='yahoo')
 
-print(dataAj)
 
