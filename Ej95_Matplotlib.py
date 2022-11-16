@@ -12,7 +12,7 @@ columnas = [data.open*data.factor, data.high*data.factor, data.low*data.factor, 
 
 dataAj = pd.concat(columnas, axis=1)
 
-dataAj.columns = [['open', 'high', 'low', 'close', 'volume']]
+dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
 
 dataAj['sma20'] = dataAj.close.rolling(20).mean()
 dataAj['std20'] = dataAj.close.rolling(20).std()
@@ -21,9 +21,11 @@ dataAj['bInf'] = dataAj.sma20 - 2*dataAj.std20
 
 dataAj.dropna(inplace=True)
 
-print(dataAj)
+dataAj.drop(['open','high','low'], axis=1)
 
-"""indicadores = dataAj['bolSup','sma20','bolInf']
-agregados = mpf.make_addplots(indicadores)
-mpf.plot(dataAj, volume=True, type='candle', figratio=(14,5), style='starsands tripes', addplot=agregados)"""
+dataAj = dataAj.loc[dataAj.index > '2020']
+
+indicadores = dataAj[['bSup','sma20','bInf']]
+agregados = mpf.make_addplot(indicadores)
+mpf.plot(dataAj, volume=True, type='candle', figratio=(14,5), style='yahoo', addplot=agregados)
 
