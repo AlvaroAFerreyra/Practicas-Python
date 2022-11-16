@@ -14,4 +14,6 @@ dataAj = pd.concat(columnas, axis=1)
 
 dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
 
-print(dataAj)
+dataAj = dataAj.loc[dataAj.index > '2020']
+
+mpf.plot(dataAj, type='candle', figratio=(14,5), mav=(4,10,30), volume=True, style='yahoo')
