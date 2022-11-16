@@ -7,8 +7,19 @@ adr = str(input("Inserte el ADR buscado: ")).upper()
 año = str(input("Inserte el año buscado: "))
 
 data = pd.read_excel(adr+".xlsx")
-data.sort_values('timestamp', ascending=True)
+data = data.sort_values('timestamp', ascending=True)
 data.set_index('timestamp', inplace=True)
 data = data.loc[(data.index >= año) & (data.index < str(int(año)+1))]
 
-print(data)
+data['factor'] = data.adjusted_close / data.close
+
+columnas = [data.open*data.factor, data.high*data.factor, data.low*data.factor, data.adjusted_close, data.volume]
+
+dataAj = pd.concat(columnas, axis=1)
+
+dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
+
+mpf.plot(dataAj, type='candle', figratio=(14,5), volume=True, style='yahoo')
+
+print(dataAj)
+
