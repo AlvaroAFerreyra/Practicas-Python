@@ -6,10 +6,13 @@ import mplfinance as mpf
 adr = str(input("Inserte el ADR buscado: ")).upper()
 año = str(input("Inserte el año buscado: "))
 
+principio = dt.datetime(int(año),1,1)
+fin = dt.datetime(int(año),4,1)
+
 data = pd.read_excel(adr+".xlsx")
 data = data.sort_values('timestamp', ascending=True)
 data.set_index('timestamp', inplace=True)
-data = data.loc[(data.index >= ('01-01-'+año)) & (data.index < ('01-04-'+str(int(año)+1)))]
+data = data.loc[(data.index >= principio) & (data.index < fin)]
 
 data['factor'] = data.adjusted_close / data.close
 
