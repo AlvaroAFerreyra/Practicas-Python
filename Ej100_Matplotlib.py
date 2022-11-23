@@ -6,6 +6,7 @@ import mplfinance as mpf
 adr = input("Inserte el ADR buscado: ").upper()
 año = int(input("Inserte el año buscado: "))
 trimestre = int(input("Inserte el trimestre buscado: "))
+ruedasSma = int(input("Inserte el número de ruedas sobre el que quiere calcular la MM: "))
 smaSlow = int(input("Inserte el número de ruedas sobre el que quiere calcular la smaSlow: "))
 smaFast = int(input("Inserte el número de ruedas sobre el que quiere calcular la smaFast: "))
 
@@ -36,4 +37,13 @@ dataAj = pd.concat(columnas, axis=1)
 
 dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
 
-mpf.plot(dataAj, type='candle', mav=(smaSlow,smaFast), figratio=(14,5), volume=True, style='yahoo')
+dataAj['sma'] = dataAj.close.rolling(ruedasSma).mean()
+dataAj['cruceSlow'] = dataAj.close.rolling(smaSlow).mean()
+dataAj['cruceFast'] = dataAj.close.rolling(smaFast).mean()
+
+indicadores = dataAj[['sma']]
+cruce = dataAj[['cruceFast','cruceSlow']]
+add_sup = mpf.make_addplot(indicadores)
+add_inf = mpf.make_addplot(cruce, panel='lower')
+
+mpf.plot(dataAj, type='candle', figratio=(14,5), volume=False, style='yahoo')
