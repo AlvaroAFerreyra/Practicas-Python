@@ -46,4 +46,4 @@ cruce = dataAj[['cruceFast','cruceSlow']]
 add_sup = mpf.make_addplot(indicadores)
 add_inf = mpf.make_addplot(cruce, panel='lower')
 
-mpf.plot(dataAj, type='candle', figratio=(14,5), volume=False, style='yahoo')
+mpf.plot(dataAj, type='candle', figratio=(14,5), volume=False, style='yahoo', addplot=[add_inf,add_sup])
