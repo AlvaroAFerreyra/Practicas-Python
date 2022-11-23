@@ -27,7 +27,6 @@ else: print("Q fuera de rango")
 data = pd.read_excel(adr+".xlsx")
 data = data.sort_values('timestamp', ascending=True)
 data.set_index('timestamp', inplace=True)
-data = data.loc[(data.index >= principio) & (data.index < fin)]
 
 data['factor'] = data.adjusted_close / data.close
 
@@ -40,6 +39,8 @@ dataAj.columns = ['open', 'high', 'low', 'close', 'volume']
 dataAj['sma'] = dataAj.close.rolling(ruedasSma).mean()
 dataAj['cruceSlow'] = dataAj.close.rolling(smaSlow).mean()
 dataAj['cruceFast'] = dataAj.close.rolling(smaFast).mean()
+
+dataAj = dataAj.loc[(dataAj.index >= principio) & (dataAj.index < fin)]
 
 indicadores = dataAj[['sma']]
 cruce = dataAj[['cruceFast','cruceSlow']]
