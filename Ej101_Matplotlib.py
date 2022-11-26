@@ -43,7 +43,7 @@ dataAj['signalInf'] = (dataAj.close*0.98).loc[dataAj.gapInf == True]
 dataAj = dataAj.drop(['high', 'low','volume'], axis=1)
 dataAj = dataAj.loc[(dataAj.index >= principio) & (dataAj.index < fin)]
 print(dataAj)
-plt.figure(figsize=(14,5))
+plt.figure(figsize=(14,5)).suptitle('Gráfico con indicadores de gaps mayores a 2%')
 plt.plot(dataAj.close)
 plt.plot(dataAj.index, dataAj.signalSup, '|', markersize=10, c="g")
 plt.plot(dataAj.index, dataAj.signalInf, "^", markersize=10, c="r")
